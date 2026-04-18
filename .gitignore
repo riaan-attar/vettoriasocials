@@ -1,0 +1,29 @@
+# Dependency directories
+node_modules/
+
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# Documentation and temporary files
+*.docx
+*.pdf
+*.log
+
+# Vercel
+.vercel
+
+# Next.js build output (if built in root)
+.next/
+out/
+build/
+
+# Environment files
+.env*
+
+# IDEs
+.vscode/
+.idea/
+
+# Local files
+spline-3d-integration/

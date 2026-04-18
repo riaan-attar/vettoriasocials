@@ -1,0 +1,107 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-canvas: #F5F0E8;
+  --color-beige: #E8DFD0;
+  --color-beige-deep: #D4C5B0;
+  --color-black: #0A0A0A;
+  --color-gold: #C9A96E;
+  --color-gold-light: #E8C98A;
+  --color-warm-gray: #8C8070;
+  --color-accent: #6B5B45;
+  --color-cream: #F9F6F1;
+  --color-white: #FFFFFF;
+}
+
+body {
+  color: var(--color-black);
+  background: var(--color-canvas);
+  overflow-x: hidden;
+}
+
+/* Lenis Recommended Base CSS */
+html.lenis, html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+/* Base Headings Setup */
+h1, h2 {
+  font-family: var(--font-dm-serif), serif;
+}
+
+h3, p, span, li, button, a {
+  font-family: var(--font-inter), sans-serif;
+}
+
+/* Typographic scale constraints */
+h1 {
+  @apply text-[36px] md:text-[48px] lg:text-[72px] font-bold tracking-tight;
+}
+
+h2 {
+  @apply text-[28px] md:text-[36px] lg:text-[44px] font-semibold;
+}
+
+h3 {
+  @apply text-[18px] md:text-[22px] lg:text-[28px] font-semibold;
+}
+
+/* 12-column grid system */
+.grid-container {
+  @apply grid grid-cols-1 md:grid-cols-12 gap-6 max-w-[1440px] mx-auto px-5 md:px-10 lg:px-20;
+}
+
+/* Custom Scroll Progress Bar styling */
+.scroll-progress-line {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background-color: var(--color-gold);
+  z-index: 1000;
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* ===== PERFORMANCE LAYER ===== */
+
+/* Promote pinned GSAP sections to their own compositor layer */
+.pin-spacer {
+  will-change: auto !important;
+}
+
+/* Force GPU compositing on all GSAP-targeted transforms */
+.transform-gpu {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* Smooth font rendering */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Respect user motion preferences globally */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
