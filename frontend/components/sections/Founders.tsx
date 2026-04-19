@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useReducedMotion } from "@/lib/useReducedMotion";
@@ -71,10 +72,11 @@ export default function Founders() {
                ref={imgRef}
                className="w-full h-[120%] absolute top-[-10%] left-0"
              >
-               <img 
+               <Image 
                  src="/images/founder.jpg" 
                  alt="Smit Kamod" 
-                 className="w-full h-full object-cover"
+                 fill
+                 className="object-cover"
                />
              </div>
              {/* Subtle Gradient Overlay */}
@@ -93,13 +95,13 @@ export default function Founders() {
 
              <div className="flex flex-col gap-5">
                 <p className="founder-text font-sans text-[22px] text-black font-medium leading-[1.5] italic border-l-2 border-gold pl-4">
-                   "My vision is to provide the highest quality content — no compromises, no shortcuts."
+                   &quot;My vision is to provide the highest quality content — no compromises, no shortcuts.&quot;
                 </p>
                 <p className="founder-text font-sans text-[17px] text-warm-gray leading-[1.7] mt-2">
-                   Currently pursuing a B.Tech in Artificial Intelligence & Data Science, I'm deeply passionate about data science and data analytics. I thrive on creative challenges, blending technical precision with imaginative thinking to build work that actually means something.
+                   Currently pursuing a B.Tech in Artificial Intelligence & Data Science, I&apos;m deeply passionate about data science and data analytics. I thrive on creative challenges, blending technical precision with imaginative thinking to build work that actually means something.
                 </p>
                 <p className="founder-text font-sans text-[17px] text-warm-gray leading-[1.7]">
-                   When I'm not building or analyzing, I'm out running — because discipline in sport and discipline in work are the same thing.
+                   When I&apos;m not building or analyzing, I&apos;m out running — because discipline in sport and discipline in work are the same thing.
                 </p>
              </div>
 
