@@ -66,11 +66,25 @@ export default function Contact() {
            <p className="contact-stagger font-sans text-[18px] text-warm-gray leading-[1.7] mb-8">
               Whether you&apos;re looking to redefine your aesthetic identity or inject rigorous data into your distribution, we&apos;re ready to architect your next phase of growth.
            </p>
-           <div className="contact-stagger">
-              <span className="font-sans text-[12px] uppercase tracking-widest text-[#666] block mb-2">Direct Inquiries</span>
-              <a href="mailto:hello@vittoriasocials.com" className="font-sans text-[20px] text-white hover:text-gold transition-colors duration-300">
-                hello@vittoriasocials.com
-              </a>
+           <div className="contact-stagger flex flex-col gap-3">
+              <div>
+                <span className="font-sans text-[12px] uppercase tracking-widest text-[#666] block mb-1">Company Inquiries</span>
+                <a href="mailto:vittoriasocials@gmail.com" className="font-sans text-[18px] text-white hover:text-gold transition-colors duration-300">
+                  vittoriasocials@gmail.com
+                </a>
+              </div>
+              <div className="mt-2">
+                <span className="font-sans text-[12px] uppercase tracking-widest text-[#666] block mb-1">Founder Direct</span>
+                <a href="mailto:kamodsmit33@gmail.com" className="font-sans text-[18px] text-white hover:text-gold transition-colors duration-300">
+                  kamodsmit33@gmail.com
+                </a>
+              </div>
+              <div className="mt-2">
+                <span className="font-sans text-[12px] uppercase tracking-widest text-[#666] block mb-1">Contact No</span>
+                <a href="tel:8806861555" className="font-sans text-[18px] text-white hover:text-gold transition-colors duration-300">
+                  +91 8806861555
+                </a>
+              </div>
            </div>
         </div>
 

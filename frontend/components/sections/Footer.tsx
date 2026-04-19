@@ -35,11 +35,13 @@ export default function Footer() {
 
         {/* Col 4: Reach */}
         <div className="flex flex-col">
-          <h4 className="font-sans text-[12px] uppercase tracking-widest text-[#666] mb-6 font-bold">London</h4>
+          <h4 className="font-sans text-[12px] uppercase tracking-widest text-[#666] mb-6 font-bold">India</h4>
           <ul className="flex flex-col gap-2 font-sans text-[15px] text-white/80 mb-8">
-             <li>Mayfair, London</li>
-             <li>United Kingdom, W1J</li>
-             <li>hello@vittoriasocials.com</li>
+             <li>Nashik, Maharashtra</li>
+             <li>India, 422011</li>
+             <li><a href="mailto:vittoriasocials@gmail.com" className="hover:text-white transition-colors">vittoriasocials@gmail.com</a></li>
+             <li><a href="mailto:kamodsmit33@gmail.com" className="hover:text-white transition-colors">kamodsmit33@gmail.com</a></li>
+             <li><a href="tel:8806861555" className="hover:text-white transition-colors">+91 8806861555</a></li>
           </ul>
           <div className="flex gap-6">
              {/* Social Links */}
