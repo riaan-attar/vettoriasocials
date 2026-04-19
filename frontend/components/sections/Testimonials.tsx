@@ -9,7 +9,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const QUOTES = [
   {
-    text: "Vettoria Socials completely redefined our market positioning. The visual aesthetic they delivered yielded a 300% increase in our primary conversion metrics.",
+    text: "Vittoria Socials completely redefined our market positioning. The visual aesthetic they delivered yielded a 300% increase in our primary conversion metrics.",
     author: "Elena Rostov",
     role: "CMO, Maison Blanc"
   },

@@ -1,11 +1,7 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useReducedMotion } from "@/lib/useReducedMotion";
-
-gsap.registerPlugin(ScrollTrigger);
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const SERVICES = [
   {
@@ -92,152 +88,134 @@ const SERVICES = [
 ];
 
 export default function ServicesGrid() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
-  const prefersReducedMotion = useReducedMotion();
+  const [activeIndex, setActiveIndex] = useState(0);
 
-  useEffect(() => {
-    if (prefersReducedMotion) return;
-
-    const ctx = gsap.context(() => {
-      // Row by row stagger
-      // Since it's a 3x3 grid, rows are [0,1,2], [3,4,5], [6,7,8]
-      // We can just use a simple stagger where `stagger: { grid: [3,3], from: "start", amount: 1.5 }`
-      // Or just a flat stagger of 0.12s
-      gsap.fromTo(cardsRef.current,
-        { y: 60, opacity: 0 },
-        { 
-          y: 0, 
-          opacity: 1, 
-          duration: 0.5, 
-          stagger: 0.12, 
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 70%"
-          }
-        }
-      );
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, [prefersReducedMotion]);
-
-  const handleMouseEnter = (idx: number) => {
-    if (prefersReducedMotion) return;
-    const card = cardsRef.current[idx];
-    if (!card) return;
-
-    // Hover 3D: rotateX(6deg) rotateY(-6deg) translateZ(20px)
-    // Box-shadow and border handled natively by Tailwind classes below
-    const icon = card.querySelector('.service-icon');
-    const tags = card.querySelectorAll('.service-tag');
-
-    gsap.to(card, {
-      rotateX: 6,
-      rotateY: -6,
-      z: 20,
-      duration: 0.4,
-      ease: "power2.out"
-    });
-
-    if (icon) {
-      gsap.to(icon, { scale: 1.15, duration: 0.5, ease: "elastic.out(1, 0.5)" });
-    }
-    
-    if (tags.length) {
-      gsap.to(tags, { y: -4, duration: 0.3, stagger: 0.05, ease: "power2.out" });
-    }
+  const handleNext = () => {
+    setActiveIndex((prev) => (prev + 1) % SERVICES.length);
   };
 
-  const handleMouseLeave = (idx: number) => {
-    if (prefersReducedMotion) return;
-    const card = cardsRef.current[idx];
-    if (!card) return;
-
-    const icon = card.querySelector('.service-icon');
-    const tags = card.querySelectorAll('.service-tag');
-
-    gsap.to(card, {
-      rotateX: 0,
-      rotateY: 0,
-      z: 0,
-      duration: 0.5,
-      ease: "power2.out"
-    });
-
-    if (icon) {
-      gsap.to(icon, { scale: 1, duration: 0.4, ease: "power2.out" });
-    }
-
-    if (tags.length) {
-      gsap.to(tags, { y: 0, duration: 0.3, ease: "power2.out" });
-    }
-  };
-
-  const handleClick = (idx: number) => {
-    const card = cardsRef.current[idx];
-    if (!card) return;
-
-    // Active click state
-    gsap.timeline()
-      .to(card, { scale: 0.97, duration: 0.1, ease: "power1.inOut" })
-      .to(card, { scale: 1, duration: 0.4, ease: "elastic.out(1, 0.5)" });
-
-    // We can also trigger a ripple or pulse effect (CSS handles this via active class easily too)
+  const handlePrev = () => {
+    setActiveIndex((prev) => (prev - 1 + SERVICES.length) % SERVICES.length);
   };
 
   return (
-    <section id="services" ref={sectionRef} className="w-full bg-cream py-32 px-5 md:px-10 lg:px-20 text-black">
-      <div className="max-w-[1440px] mx-auto">
+    <section id="services" className="w-full bg-cream py-32 px-5 md:px-10 overflow-hidden relative">
+      <div className="max-w-[1440px] mx-auto min-h-[600px] flex flex-col items-center">
         
         {/* Header */}
-        <div className="flex justify-between items-end mb-16 px-4">
-          <h2 className="font-serif text-[48px] md:text-[64px] font-bold leading-none">Our Services</h2>
+        <div className="w-full flex justify-between items-end mb-16 px-4 md:px-10 lg:px-20 z-10 relative">
+          <h2 className="font-serif text-[48px] md:text-[64px] font-bold leading-none text-black">Our Services</h2>
           <span className="font-stats text-gold text-[24px] md:text-[32px] font-bold">09</span>
         </div>
 
-        {/* 3x3 Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" style={{ perspective: '1200px' }}>
-          {SERVICES.map((s, idx) => (
-            <div 
-              key={idx}
-              ref={el => { cardsRef.current[idx] = el; }}
-              className="bg-white rounded-xl p-6 md:p-8 flex flex-col justify-between border border-beige-deep transition-all duration-250 hover:border-gold hover:shadow-[0_20px_60px_rgba(10,10,10,0.12)] shadow-[0_4px_16px_rgba(10,10,10,0.05)] opacity-0 transform-gpu cursor-pointer group"
-              style={{ minHeight: '320px', transformStyle: 'preserve-3d' }}
-              onMouseEnter={() => handleMouseEnter(idx)}
-              onMouseLeave={() => handleMouseLeave(idx)}
-              onClick={() => handleClick(idx)}
-            >
-              {/* Top Area */}
-              <div>
-                <div className="flex justify-between items-start mb-6">
-                  <span className="font-sans text-[12px] text-gold font-bold">{s.num}</span>
-                  <div className="service-icon text-black">
-                    {s.icon}
-                  </div>
-                </div>
-                <h3 className="font-sans text-[22px] font-semibold text-black mb-3 pr-4 leading-[1.3]">
-                  {s.title}
-                </h3>
-                <p className="font-sans text-[16px] text-warm-gray leading-[1.6]">
-                  {s.desc}
-                </p>
-              </div>
+        {/* Carousel Container */}
+        <div className="relative w-full max-w-[1440px] h-[450px] flex justify-center items-center perspective-[1200px]">
+          <AnimatePresence initial={false}>
+            {SERVICES.map((s, idx) => {
+              // Calculate offset, enabling wrap-around logic
+              let diff = idx - activeIndex;
+              if (diff > Math.floor(SERVICES.length / 2)) diff -= SERVICES.length;
+              if (diff < -Math.floor(SERVICES.length / 2)) diff += SERVICES.length;
+              
+              const absDiff = Math.abs(diff);
+              
+              // Only render visible items
+              if (absDiff > 3) return null;
 
-              {/* Tags Area */}
-              <div className="flex flex-wrap gap-2 mt-8 pt-6 border-t border-beige">
-                {s.tags.map((tag, tIdx) => (
-                   <span 
-                     key={tIdx} 
-                     className="service-tag bg-beige text-black font-sans text-[11px] uppercase tracking-wider font-semibold px-3 py-1.5 rounded-md"
-                   >
-                     {tag}
-                   </span>
-                ))}
-              </div>
-            </div>
-          ))}
+              const isCenter = diff === 0;
+              const direction = diff > 0 ? 1 : -1;
+              const offsetX = direction * (absDiff * 95); // Increased from 50 to 95 for wider horizontal spread
+              const scale = 1 - (absDiff * 0.15);
+              const opacity = 1 - (absDiff * 0.35);
+              const zIndex = 10 - absDiff;
+              const blur = absDiff * 1.5;
+
+              // Alternating "up and down" trench pattern
+              const verticalOffset = absDiff % 2 === 1 ? -60 : 20; 
+
+              return (
+                <motion.div
+                  key={idx}
+                  initial={false}
+                  animate={{
+                    x: `calc(-50% + ${offsetX}%)`,
+                    y: `calc(-50% + ${verticalOffset}px)`,
+                    scale,
+                    opacity,
+                    zIndex,
+                    filter: `blur(${blur}px)`,
+                  }}
+                  transition={{ duration: 0.5, ease: "easeOut" }}
+                  className={`absolute top-1/2 left-1/2 w-[300px] md:w-[380px] min-h-[380px] rounded-3xl p-8 flex flex-col justify-between shadow-2xl cursor-pointer
+                    ${isCenter 
+                      ? 'bg-[#E7DED0] border-transparent text-black' 
+                      : 'bg-white border border-beige/40 text-black'}
+                  `}
+                  onClick={() => setActiveIndex(idx)}
+                  style={{
+                    transformOrigin: "center center",
+                  }}
+                >
+                  {/* Decorative line for center card (like the screenshot) */}
+                  {isCenter && (
+                    <div className="absolute top-6 right-6 w-12 h-12 border-t-2 border-r-2 border-black/10 rounded-tr-lg" />
+                  )}
+
+                  {/* Top Area */}
+                  <div className="z-10">
+                    <div className="flex justify-between items-start mb-6">
+                      <span className={`font-sans text-[14px] font-bold ${isCenter ? 'text-black/60' : 'text-gold'}`}>
+                        {s.num}
+                      </span>
+                      <div className="service-icon text-black">
+                        {s.icon}
+                      </div>
+                    </div>
+                    <h3 className="font-sans text-[26px] font-semibold mb-4 pr-4 leading-[1.2] text-black">
+                      {s.title}
+                    </h3>
+                  </div>
+
+                  {/* Middle / Tags Space */}
+                  <div className="flex-1 mt-2 z-10 mb-6">
+                    <p className="font-sans text-[16px] leading-[1.6] text-warm-gray">
+                      {s.desc}
+                    </p>
+                  </div>
+
+                  {/* Bottom / Tags */}
+                  <div className={`flex flex-wrap gap-2 pt-4 z-10 ${!isCenter && 'border-t border-beige/50'}`}>
+                    {s.tags.map((tag, tIdx) => (
+                       <span 
+                         key={tIdx} 
+                         className={`font-sans text-[11px] uppercase tracking-wider font-semibold px-3 py-1.5 rounded-full
+                           ${isCenter ? 'bg-white text-black' : 'bg-beige/30 text-black'}
+                         `}
+                       >
+                         {tag}
+                       </span>
+                    ))}
+                  </div>
+                </motion.div>
+              );
+            })}
+          </AnimatePresence>
+        </div>
+
+        {/* Navigation Controls */}
+        <div className="flex gap-4 items-center justify-center mt-12 z-20">
+          <button 
+            onClick={handlePrev}
+            className="w-12 h-12 rounded-xl border border-warm-gray/30 bg-white flex items-center justify-center text-black hover:bg-beige transition-colors shadow-sm"
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button 
+            onClick={handleNext}
+            className="w-12 h-12 rounded-xl border border-warm-gray/30 bg-white flex items-center justify-center text-black hover:bg-beige transition-colors shadow-sm"
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
         </div>
 
       </div>

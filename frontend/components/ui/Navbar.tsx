@@ -31,7 +31,7 @@ export default function Navbar() {
         <div className="max-w-[1440px] mx-auto px-5 md:px-10 lg:px-20 flex justify-between items-center">
           {/* Logo */}
           <Link href="/" className="flex items-center text-[22px] md:text-[26px]">
-            <span className={`font-display font-bold transition-colors ${scrolled ? 'text-black' : 'text-gold'}`}>Vettoria</span>
+            <span className={`font-display font-bold transition-colors ${scrolled ? 'text-black' : 'text-gold'}`}>Vittoria</span>
             <span className={`font-display transition-colors ${scrolled ? 'text-black' : 'text-white'}`}>&nbsp;Socials</span>
           </Link>
 

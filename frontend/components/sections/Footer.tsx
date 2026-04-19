@@ -5,7 +5,7 @@ export default function Footer() {
         
         {/* Col 1: Identity */}
         <div className="flex flex-col">
-          <h3 className="font-display text-[28px] text-white font-bold mb-6">Vettoria Socials</h3>
+          <h3 className="font-display text-[28px] text-white font-bold mb-6">Vittoria Socials</h3>
           <p className="font-sans text-[14px] leading-[1.6] text-warm-gray mb-8 max-w-[250px]">
             The definitive creative engine constructing modern legacy brands through high-art cinematography algorithms.
           </p>
@@ -39,7 +39,7 @@ export default function Footer() {
           <ul className="flex flex-col gap-2 font-sans text-[15px] text-white/80 mb-8">
              <li>Mayfair, London</li>
              <li>United Kingdom, W1J</li>
-             <li>hello@vettoriasocials.com</li>
+             <li>hello@vittoriasocials.com</li>
           </ul>
           <div className="flex gap-6">
              {/* Social Links */}
@@ -54,7 +54,7 @@ export default function Footer() {
       {/* Copyright Bar */}
       <div className="max-w-[1440px] mx-auto border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
          <p className="font-sans text-[13px] text-[#666]">
-            &copy; {new Date().getFullYear()} Vettoria Socials. All rights reserved.
+            &copy; {new Date().getFullYear()} Vittoria Socials. All rights reserved.
          </p>
          <div className="flex gap-6 font-sans text-[13px] text-[#666]">
             <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>

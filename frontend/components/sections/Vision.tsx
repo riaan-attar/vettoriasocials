@@ -161,7 +161,7 @@ export default function Vision() {
           
           <div className="w-full lg:w-[40%] flex flex-col justify-end">
             <p ref={bodyRef} className="opacity-0 font-sans text-[18px] text-warm-gray leading-[1.6]">
-              Vettoria Socials is a full-service creative engine. We craft premium digital presence, capture high-end cinematography, and distribute it directly through intelligent data channels.
+              Vittoria Socials is a full-service creative engine. We craft premium digital presence, capture high-end cinematography, and distribute it directly through intelligent data channels.
             </p>
           </div>
         </div>

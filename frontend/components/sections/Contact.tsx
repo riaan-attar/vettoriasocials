@@ -68,8 +68,8 @@ export default function Contact() {
            </p>
            <div className="contact-stagger">
               <span className="font-sans text-[12px] uppercase tracking-widest text-[#666] block mb-2">Direct Inquiries</span>
-              <a href="mailto:hello@vettoriasocials.com" className="font-sans text-[20px] text-white hover:text-gold transition-colors duration-300">
-                hello@vettoriasocials.com
+              <a href="mailto:hello@vittoriasocials.com" className="font-sans text-[20px] text-white hover:text-gold transition-colors duration-300">
+                hello@vittoriasocials.com
               </a>
            </div>
         </div>

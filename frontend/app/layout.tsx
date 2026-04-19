@@ -11,7 +11,7 @@ const dmSerif = DM_Serif_Display({ subsets: ["latin"], weight: ["400"], variable
 const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600", "700"], variable: '--font-inter' });
 
 export const metadata: Metadata = {
-  title: "Vettoria Socials Agency",
+  title: "Vittoria Socials Agency",
   description: "Want to scale your business? We got you covered up.",
 };
 

@@ -95,7 +95,7 @@ export default function Founders() {
 
              <div className="flex flex-col gap-5">
                 <p className="founder-text font-sans text-[17px] text-warm-gray leading-[1.7]">
-                   Vettoria Socials was founded on a singular premise: the intersection of high-art cinematography and rigorous data science is where modern legacy brands are born.
+                   Vittoria Socials was founded on a singular premise: the intersection of high-art cinematography and rigorous data science is where modern legacy brands are born.
                 </p>
                 <p className="founder-text font-sans text-[17px] text-warm-gray leading-[1.7]">
                    Our leadership brings 15+ years of combined expertise spanning independent film production, Fortune 500 digital marketing algorithms, and luxury brand architecture.
