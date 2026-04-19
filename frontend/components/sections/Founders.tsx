@@ -66,53 +66,59 @@ export default function Founders() {
        <div className="max-w-[1200px] mx-auto flex flex-col md:flex-row items-center gap-16 lg:gap-24">
           
           {/* Parallax Image Left */}
-          <div className="w-full md:w-[45%] aspect-[4/5] relative overflow-hidden bg-[#111]" ref={maskRef}>
+          <div className="w-full md:w-[45%] aspect-[4/5] relative overflow-hidden bg-black rounded-lg" ref={maskRef}>
              <div 
                ref={imgRef}
                className="w-full h-[120%] absolute top-[-10%] left-0"
-               style={{ 
-                 background: 'linear-gradient(135deg, #1a1815 0%, #2a2520 30%, #1a1815 50%, #111 100%)',
-                 filter: "grayscale(100%) contrast(1.1)"
-               }}
              >
-               <div className="absolute inset-0 flex items-center justify-center">
-                 <div className="w-[60%] h-[70%] rounded-full bg-gradient-to-b from-[#333] to-[#1a1a1a] opacity-40" />
-               </div>
+               <img 
+                 src="/images/founder.jpg" 
+                 alt="Smit Kamod" 
+                 className="w-full h-full object-cover"
+               />
              </div>
-             {/* Gradient Overlay */}
-             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-50" />
+             {/* Subtle Gradient Overlay */}
+             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent opacity-80" />
           </div>
 
           {/* Bio Typography Right */}
           <div className="w-full md:w-[55%] flex flex-col justify-center" ref={textRef}>
              <span className="founder-text font-sans text-[12px] uppercase tracking-widest text-gold mb-6 font-bold block">
-               The Creators
+               Meet the Founder
              </span>
              <h2 className="founder-text font-display text-[48px] md:text-[64px] font-bold leading-[1.1] mb-8 text-black">
-               Led by <br />
-               <span className="italic font-serif font-normal text-warm-gray">Visionaries.</span>
+               Smit <br />
+               <span className="italic font-serif font-normal text-warm-gray">Kamod.</span>
              </h2>
 
              <div className="flex flex-col gap-5">
-                <p className="founder-text font-sans text-[17px] text-warm-gray leading-[1.7]">
-                   Vittoria Socials was founded on a singular premise: the intersection of high-art cinematography and rigorous data science is where modern legacy brands are born.
+                <p className="founder-text font-sans text-[22px] text-black font-medium leading-[1.5] italic border-l-2 border-gold pl-4">
+                   "My vision is to provide the highest quality content — no compromises, no shortcuts."
+                </p>
+                <p className="founder-text font-sans text-[17px] text-warm-gray leading-[1.7] mt-2">
+                   Currently pursuing a B.Tech in Artificial Intelligence & Data Science, I'm deeply passionate about data science and data analytics. I thrive on creative challenges, blending technical precision with imaginative thinking to build work that actually means something.
                 </p>
                 <p className="founder-text font-sans text-[17px] text-warm-gray leading-[1.7]">
-                   Our leadership brings 15+ years of combined expertise spanning independent film production, Fortune 500 digital marketing algorithms, and luxury brand architecture.
-                </p>
-                <p className="founder-text font-sans text-[17px] text-warm-gray leading-[1.7]">
-                   We don&apos;t just build campaigns; we craft enduring digital empires.
+                   When I'm not building or analyzing, I'm out running — because discipline in sport and discipline in work are the same thing.
                 </p>
              </div>
 
-             <div className="founder-text mt-12 pt-8 border-t border-beige-deep flex flex-col md:flex-row gap-8">
+             <div className="founder-text mt-8 flex flex-wrap gap-2">
+                 {['Data Science', 'Data Analytics', 'AI & ML', 'Creative Strategy', 'Content Creation', 'Runner & Fitness'].map(tag => (
+                   <span key={tag} className="bg-beige/40 text-black px-4 py-2 text-[11px] uppercase tracking-wider font-semibold rounded-full border border-beige-deep">
+                     {tag}
+                   </span>
+                 ))}
+             </div>
+
+             <div className="founder-text mt-10 pt-8 border-t border-beige-deep flex flex-col md:flex-row gap-8">
                 <div>
-                   <h4 className="font-serif text-[24px] text-black font-bold">Alexander Reed</h4>
-                   <span className="font-sans text-[12px] uppercase text-warm-gray tracking-widest block mt-1">Co-Founder, CDO</span>
+                   <h4 className="font-serif text-[24px] text-black font-bold">Founder & CD</h4>
+                   <span className="font-sans text-[12px] uppercase text-warm-gray tracking-widest block mt-1">Agency founded 2025</span>
                 </div>
                 <div>
-                   <h4 className="font-serif text-[24px] text-black font-bold">Valeria Cross</h4>
-                   <span className="font-sans text-[12px] uppercase text-warm-gray tracking-widest block mt-1">Co-Founder, CMO</span>
+                   <h4 className="font-serif text-[24px] text-black font-bold">B.Tech AI & DS</h4>
+                   <span className="font-sans text-[12px] uppercase text-warm-gray tracking-widest block mt-1">Class of 2025</span>
                 </div>
              </div>
           </div>

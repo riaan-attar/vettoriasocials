@@ -23,7 +23,7 @@ export default function Hero() {
   return (
     <section id="hero" className="w-full h-screen relative bg-black">
       <Spline
-        scene="https://prod.spline.design/0PyydItsyPZZXBTo/scene.splinecode" 
+        scene="https://prod.spline.design/0PyydItsyPZZXBTo/scene.splinecode?v=2" 
       />
     </section>
   );
